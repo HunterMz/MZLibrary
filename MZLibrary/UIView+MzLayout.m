@@ -27,28 +27,78 @@
     return constantBlock;
 }
 
-- (MZDistanceBlock)mz_topToTop {
+- (MZViewDistanceBlock)mz_topToTop {
     return ^UIView* (UIView *view, CGFloat distance) {
         return self.mz_constantToAttribute(view, NSLayoutAttributeTop, distance);
     };
 }
 
-- (MZDistanceBlock)mz_leftToLeft {
+- (MZViewDistanceBlock)mz_leftToLeft {
     return ^UIView* (UIView *view, CGFloat distacne) {
         return self.mz_constantToAttribute(view, NSLayoutAttributeLeft, distacne);
     };
 }
 
-- (MZDistanceBlock)mz_bottomToBottom {
+- (MZViewDistanceBlock)mz_bottomToBottom {
     return ^UIView* (UIView *view, CGFloat distance) {
         return self.mz_constantToAttribute(view, NSLayoutAttributeBottom, -distance);
     };
 }
 
-- (MZDistanceBlock)mz_rightToRight {
+- (MZViewDistanceBlock)mz_rightToRight {
     return ^UIView* (UIView *view, CGFloat distance) {
         return self.mz_constantToAttribute(view, NSLayoutAttributeRight, -distance);
     };
 }
+
+- (MZViewDistanceBlock)mz_topToBottom {
+    return ^UIView* (UIView *view, CGFloat distance) {
+        return self.mz_constantToAttribute(view, NSLayoutAttributeTop, distance);
+    };
+}
+
+- (MZViewDistanceBlock)mz_bottomToTop {
+    return ^UIView* (UIView *view, CGFloat distance) {
+        return self.mz_constantToAttribute(view, NSLayoutAttributeBottom, -distance);
+    };
+}
+
+- (MZViewDistanceBlock)mz_leftToRight {
+    return ^UIView* (UIView *view, CGFloat distance) {
+        return self.mz_constantToAttribute(view, NSLayoutAttributeLeft, distance);
+    };
+}
+
+
+- (MZViewDistanceBlock)mz_rightToLeft {
+    return ^UIView* (UIView *view, CGFloat distance) {
+        return self.mz_constantToAttribute(view, NSLayoutAttributeRight, distance);
+    };
+}
+
+- (MZDistanceBlock)mz_topToSuperView {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_topToTop(self.superview, distance);
+    };
+}
+
+- (MZDistanceBlock)mz_lefToSuperView {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_leftToLeft(self.superview, distance);
+    };
+}
+
+- (MZDistanceBlock)mz_bottomToSuperView {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_bottomToBottom(self.superview, distance);
+    };
+}
+
+- (MZDistanceBlock)mz_rightToSuperView {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_rightToRight(self.superview, distance);
+    };
+}
+
 
 @end
