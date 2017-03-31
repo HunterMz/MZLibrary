@@ -16,30 +16,32 @@ typedef UIView* (^MZAttributeBlock)(NSLayoutAttribute attr1, NSLayoutRelation re
 typedef UIView* (^MZConstantBlock)(UIView *view, NSLayoutAttribute attribute, CGFloat constant);
 typedef UIView* (^MZViewDistanceBlock)(UIView *view, CGFloat distance);
 typedef UIView* (^MZDistanceBlock)(CGFloat distance);
+typedef UIView* (^MZViewOffsetBlock)(UIView *view, CGPoint offset);
+
 - (MZConstantBlock)mz_constantToAttribute;
 
-/// self.top = view.top --> distance
+/// self.top <--> view.top's distance
 - (MZViewDistanceBlock)mz_topToTop;
 
-/// self.left = view.left --> distance
+/// self.left <--> view.left's distance
 - (MZViewDistanceBlock)mz_leftToLeft;
 
-/// self.bottom = view.bottom --> distance
+/// self.bottom <--> view.bottom's distance
 - (MZViewDistanceBlock)mz_bottomToBottom;
 
-/// self.right = view.right --> distance
+/// self.right <--> view.right's distance
 - (MZViewDistanceBlock)mz_rightToRight;
 
-/// self.top = view.bottom --> distance
+/// self.top <--> view.bottom's distance
 - (MZViewDistanceBlock)mz_topToBottom;
 
-/// self.bottom = view.top --> distance
+/// self.bottom <--> view.top's distance
 - (MZViewDistanceBlock)mz_bottomToTop;
 
-/// self.left = view.right --> distance
+/// self.left <--> view.right's distance
 - (MZViewDistanceBlock)mz_leftToRight;
 
-/// self.right = view.left --> distance
+/// self.right <--> view.left's distance
 - (MZViewDistanceBlock)mz_rightToLeft;
 
 /// self.top <--> superView.top's distance
@@ -48,9 +50,27 @@ typedef UIView* (^MZDistanceBlock)(CGFloat distance);
 /// self.left <--> superview.left's distance
 - (MZDistanceBlock)mz_lefToSuperView;
 
-/// slef.bottom <--> super.bottom's distance
+/// slef.bottom <--> superview.bottom's distance
 - (MZDistanceBlock)mz_bottomToSuperView;
 
-/// self.right <--> super.right's distance
+/// self.right <--> superview.right's distance
 - (MZDistanceBlock)mz_rightToSuperView;
+
+/// self.centre.x <--> view.centre.x's distance
+- (MZViewOffsetBlock)mz_axisXToAxisX;
+
+/// self.centre.Y <--> view.center.y's distance
+- (MZViewOffsetBlock)mz_axisYToAxisY;
+
+/// self.centre <--> viwe.centre's offset
+- (MZViewOffsetBlock)mz_centreTo;
+
+/// self.centre <--> superview.centre.offset
+- (MZViewOffsetBlock)mz_centreToSuperView;
+
+/// self.centre.x <--> superview.center.x's distance
+- (MZViewOffsetBlock)mz_axisXToSuperView;
+
+/// self.centre.y <--> superview.centre.y's distance
+- (MZViewOffsetBlock)mz_axisYToSuperView;
 @end

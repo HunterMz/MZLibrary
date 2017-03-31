@@ -69,7 +69,6 @@
     };
 }
 
-
 - (MZViewDistanceBlock)mz_rightToLeft {
     return ^UIView* (UIView *view, CGFloat distance) {
         return self.mz_constantToAttribute(view, NSLayoutAttributeRight, distance);

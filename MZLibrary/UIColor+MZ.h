@@ -21,13 +21,15 @@
 + (UIColor *)HEX:(NSInteger)hex;
 
 
+
 /**
- 根据16进制生成带透明度的颜色
+ 根据16进制生成可调节透明度的颜色
 
  @param hex 16进制
+ @param opacity 透明度
  @return 颜色
  */
-+ (UIColor *)HEXA:(NSInteger)hex;
++ (UIColor *)HEX:(NSInteger)hex alpha:(float)opacity;
 
 
 /**

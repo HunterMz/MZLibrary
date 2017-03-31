@@ -18,24 +18,17 @@
 }
 
 + (UIColor *)HEX:(NSInteger)hex{
+    return [UIColor HEX:hex alpha:1.0];
+}
+
++ (UIColor *)HEX:(NSInteger)hex alpha:(float)opacity {
     int r = (hex >> 16) & 0xFF;
     int g = (hex >> 8) & 0xFF;
     int b = (hex) & 0xFF;
     return [UIColor colorWithRed:r / 255.0f
                            green:g / 255.0f
                             blue:b / 255.0f
-                           alpha:1];
-}
-
-+ (UIColor *)HEXA:(NSInteger)hex{
-    int r = (hex >> 24) & 0xFF;
-    int g = (hex >> 16) & 0xFF;
-    int b = (hex >> 8) & 0xFF;
-    int a = (hex) & 0xFF;
-    return [UIColor colorWithRed:r / 255.0f
-                           green:g / 255.0f
-                            blue:b / 255.0f
-                           alpha:a / 255.0f];
+                           alpha:opacity];
 }
 
 + (UIColor *)randomColor{
