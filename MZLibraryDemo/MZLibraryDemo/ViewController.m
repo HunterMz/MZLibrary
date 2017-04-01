@@ -20,15 +20,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIView *testView1 = [UIView new];
-    [self.view addSubview:testView1];
-    testView1.mz_centreToSuperView(CGPointZero).mz_size(CGSizeMake(40, 40));
-    testView1.backgroundColor = [UIColor randomColor];
+    UIView *view1 = [UIView new];
+    [self.view addSubview:view1];
+    view1.mz_centreToSuperView(CGPointZero).mz_size(CGSizeMake(40, 40));
+    view1.backgroundColor = [UIColor randomColor];
     
     UIView *view2 = [UIView new];
     [self.view addSubview:view2];
-    view2.mz_topToBottom(testView1, 20).mz_centreXToSuperView(0).mz_size(CGSizeMake(40, 40));
+    view2.mz_topToBottom(view1, 20).mz_centreXToSuperView(0).mz_size(CGSizeMake(40, 40));
     view2.backgroundColor = [UIColor randomColor];
+    
+    UIView *view3 = [UIView new];
+    [self.view addSubview:view3];
+    view3.mz_centreY(view1, 0).mz_leftToRight(view2, 20).mz_size(CGSizeMake(40, 40));
+    view3.backgroundColor = [UIColor randomColor];
+    
+    UIView *view4 = [UIView new];
+    [self.view addSubview:view4];
+    view4.mz_topToTop(view2, 0).mz_leftToRight(view2, 20).mz_size(CGSizeMake(40, 40));
+    view4.backgroundColor = [UIColor randomColor];
 }
 
 

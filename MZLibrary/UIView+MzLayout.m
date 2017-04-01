@@ -53,25 +53,25 @@
 
 - (MZViewDistanceBlock)mz_topToBottom {
     return ^UIView* (UIView *view, CGFloat distance) {
-        return self.mz_constantToAttribute(view, NSLayoutAttributeTop, distance);
+        return self.mz_constraintTo(NSLayoutAttributeTop, NSLayoutRelationEqual, view, NSLayoutAttributeBottom, 1, distance);
     };
 }
 
 - (MZViewDistanceBlock)mz_bottomToTop {
     return ^UIView* (UIView *view, CGFloat distance) {
-        return self.mz_constantToAttribute(view, NSLayoutAttributeBottom, -distance);
+        return self.mz_constraintTo(NSLayoutAttributeBottom, NSLayoutRelationEqual, view, NSLayoutAttributeTop, 1, -distance);
     };
 }
 
 - (MZViewDistanceBlock)mz_leftToRight {
     return ^UIView* (UIView *view, CGFloat distance) {
-        return self.mz_constantToAttribute(view, NSLayoutAttributeLeft, distance);
+        return self.mz_constraintTo(NSLayoutAttributeLeft, NSLayoutRelationEqual, view, NSLayoutAttributeRight, 1, distance);
     };
 }
 
 - (MZViewDistanceBlock)mz_rightToLeft {
     return ^UIView* (UIView *view, CGFloat distance) {
-        return self.mz_constantToAttribute(view, NSLayoutAttributeRight, distance);
+        return self.mz_constraintTo(NSLayoutAttributeRight, NSLayoutRelationEqual, view, NSLayoutAttributeLeft, 1, -distance);
     };
 }
 
