@@ -99,5 +99,58 @@
     };
 }
 
+- (MZViewDistanceBlock)mz_centreX {
+    return ^UIView* (UIView *view, CGFloat distance) {
+        return self.mz_constantToAttribute(view, NSLayoutAttributeCenterX, distance);
+    };
+}
+
+- (MZViewDistanceBlock)mz_centreY {
+    return ^UIView* (UIView *view, CGFloat distance) {
+        return self.mz_constantToAttribute(view, NSLayoutAttributeCenterY, distance);
+    };
+}
+
+- (MZViewOffsetBlock)mz_centreTo {
+    return ^UIView* (UIView *view, CGPoint offset) {
+        return self.mz_centreX(view, offset.x).mz_centreY(view, offset.y);
+    };
+}
+
+- (MZOffsetBlock)mz_centreToSuperView {
+    return ^UIView* (CGPoint offset) {
+        return self.mz_centreX(self.superview, offset.x).mz_centreY(self.superview, offset.y);
+    };
+}
+
+- (MZDistanceBlock)mz_centreXToSuperView {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_centreX(self.superview, distance);
+    };
+}
+
+- (MZDistanceBlock)mz_centreYToSuperView {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_centreY(self.superview, distance);
+    };
+}
+
+- (MZDistanceBlock)mz_width {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_constraintTo(NSLayoutAttributeWidth, NSLayoutRelationEqual, nil, NSLayoutAttributeNotAnAttribute, 1, distance);
+    };
+}
+
+- (MZDistanceBlock)mz_height {
+    return ^UIView* (CGFloat distance) {
+        return self.mz_constraintTo(NSLayoutAttributeHeight, NSLayoutRelationEqual, nil, NSLayoutAttributeNotAnAttribute, 1, distance);
+    };
+}
+
+- (MZSizeBlock)mz_size {
+    return ^UIView* (CGSize size) {
+        return self.mz_width(size.width).mz_height(size.height);
+    };
+}
 
 @end

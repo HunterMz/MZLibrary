@@ -16,6 +16,8 @@ typedef UIView* (^MZAttributeBlock)(NSLayoutAttribute attr1, NSLayoutRelation re
 typedef UIView* (^MZConstantBlock)(UIView *view, NSLayoutAttribute attribute, CGFloat constant);
 typedef UIView* (^MZViewDistanceBlock)(UIView *view, CGFloat distance);
 typedef UIView* (^MZDistanceBlock)(CGFloat distance);
+typedef UIView* (^MZSizeBlock)(CGSize size);
+typedef UIView* (^MZOffsetBlock)(CGPoint offset);
 typedef UIView* (^MZViewOffsetBlock)(UIView *view, CGPoint offset);
 
 - (MZConstantBlock)mz_constantToAttribute;
@@ -57,20 +59,29 @@ typedef UIView* (^MZViewOffsetBlock)(UIView *view, CGPoint offset);
 - (MZDistanceBlock)mz_rightToSuperView;
 
 /// self.centre.x <--> view.centre.x's distance
-- (MZViewOffsetBlock)mz_axisXToAxisX;
+- (MZViewDistanceBlock)mz_centreX;
 
 /// self.centre.Y <--> view.center.y's distance
-- (MZViewOffsetBlock)mz_axisYToAxisY;
+- (MZViewDistanceBlock)mz_centreY;
 
 /// self.centre <--> viwe.centre's offset
 - (MZViewOffsetBlock)mz_centreTo;
 
 /// self.centre <--> superview.centre.offset
-- (MZViewOffsetBlock)mz_centreToSuperView;
+- (MZOffsetBlock)mz_centreToSuperView;
 
 /// self.centre.x <--> superview.center.x's distance
-- (MZViewOffsetBlock)mz_axisXToSuperView;
+- (MZDistanceBlock)mz_centreXToSuperView;
 
 /// self.centre.y <--> superview.centre.y's distance
-- (MZViewOffsetBlock)mz_axisYToSuperView;
+- (MZDistanceBlock)mz_centreYToSuperView;
+
+/// self.size = size
+- (MZSizeBlock)mz_size;
+
+/// self.width = distance
+- (MZDistanceBlock)mz_width;
+
+/// self.height = distance
+- (MZDistanceBlock)mz_height;
 @end
